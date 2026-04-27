@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laundry King — Select Wash Type</title>
+  <link rel="stylesheet" href="select-wash.css" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="3" width="22" height="22" rx="4" stroke="#1a3a6b" stroke-width="2"/>
+        <circle cx="14" cy="15" r="6" stroke="#1a3a6b" stroke-width="2"/>
+        <circle cx="14" cy="15" r="2.5" stroke="#1a3a6b" stroke-width="1.5"/>
+        <circle cx="8" cy="7.5" r="1.2" fill="#1a3a6b"/>
+        <circle cx="11.5" cy="7.5" r="1.2" fill="#1a3a6b"/>
+      </svg>
+      <span class="sidebar__brand">Laundry King</span>
+    </div>
+
+    <nav class="sidebar__nav">
+      <p class="sidebar__section-label">Menu</p>
+      <ul>
+        <li class="nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Home
+        </li>
+        <li class="nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Transaction History
+        </li>
+        <li class="nav-item active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Offered Services
+        </li>
+        <li class="nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+          Laundry Status
+        </li>
+      </ul>
+    </nav>
+
+    <nav class="sidebar__nav sidebar__nav--general">
+      <p class="sidebar__section-label">General</p>
+      <ul>
+        <li class="nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+          Settings
+        </li>
+        <li class="nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Profile
+        </li>
+        <li class="nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Log Out
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topbar__user">
+        <div class="topbar__avatar">LV</div>
+        <div class="topbar__info">
+          <span class="topbar__name">Leon Vallada</span>
+          <span class="topbar__email">Valladaeleon@gmail.com</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Select wash type -->
+    <section class="section">
+      <h2 class="section__title">Select what to type to wash</h2>
+      <div class="pack-grid">
+
+        <!-- Pack 1 -->
+        <div class="pack-card selected" onclick="selectPack(this)">
+          <div class="pack-card__icon">
+            <!-- T-shirt + sparkles + folded stack -->
+            <svg width="64" height="64" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- T-shirt -->
+              <path d="M24 14 L14 24 L22 28 L22 46 L50 46 L50 28 L58 24 L48 14 C47 17 43 20 36 20 C29 20 25 17 24 14Z"
+                    stroke="#1a3a6b" stroke-width="2" stroke-linejoin="round" fill="none"/>
+              <!-- Sparkle top-left -->
+              <line x1="12" y1="12" x2="12" y2="18" stroke="#1a3a6b" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="9" y1="15" x2="15" y2="15" stroke="#1a3a6b" stroke-width="1.8" stroke-linecap="round"/>
+              <!-- Sparkle small -->
+              <line x1="18" y1="8" x2="18" y2="12" stroke="#1a3a6b" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="16" y1="10" x2="20" y2="10" stroke="#1a3a6b" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Folded layers -->
+              <rect x="22" y="49" width="28" height="4" rx="2" stroke="#1a3a6b" stroke-width="1.8" fill="none"/>
+              <rect x="23" y="54" width="26" height="4" rx="2" stroke="#1a3a6b" stroke-width="1.8" fill="none"/>
+            </svg>
+          </div>
+          <div class="pack-card__info">
+            <h3>Pack 1</h3>
+            <p>Regular clothes</p>
+          </div>
+        </div>
+
+        <!-- Pack U -->
+        <div class="pack-card" onclick="selectPack(this)">
+          <div class="pack-card__icon">
+            <!-- Baby onesie + pants -->
+            <svg width="64" height="64" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Baby onesie / small shirt -->
+              <path d="M20 12 L12 20 L18 23 L18 36 L32 36 L32 23 L38 20 L30 12 C29 14 26 16 25 16 C24 16 21 14 20 12Z"
+                    stroke="#1a3a6b" stroke-width="2" stroke-linejoin="round" fill="none"/>
+              <!-- Snap buttons on onesie bottom -->
+              <circle cx="23" cy="38" r="1.2" fill="#1a3a6b"/>
+              <circle cx="27" cy="38" r="1.2" fill="#1a3a6b"/>
+              <!-- Pants -->
+              <path d="M38 28 L38 52 L46 52 L46 40 L50 40 L50 52 L58 52 L58 28 Z"
+                    stroke="#1a3a6b" stroke-width="2" stroke-linejoin="round" fill="none"/>
+              <!-- Waistband -->
+              <line x1="38" y1="32" x2="58" y2="32" stroke="#1a3a6b" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pack-card__info">
+            <h3>Pack U</h3>
+            <p>Maong, Blankets, Towels, All white clothes, &amp; baby/ kinds clothes</p>
+          </div>
+        </div>
+
+        <!-- Pack 3 -->
+        <div class="pack-card" onclick="selectPack(this)">
+          <div class="pack-card__icon">
+            <!-- Stacked blankets / thick linens -->
+            <svg width="64" height="64" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Stack of folded blankets with lines to suggest texture -->
+              <rect x="14" y="12" width="44" height="10" rx="2" stroke="#1a3a6b" stroke-width="2" fill="none"/>
+              <line x1="20" y1="15" x2="52" y2="15" stroke="#1a3a6b" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="20" y1="18" x2="52" y2="18" stroke="#1a3a6b" stroke-width="1.2" stroke-linecap="round"/>
+
+              <rect x="14" y="24" width="44" height="10" rx="2" stroke="#1a3a6b" stroke-width="2" fill="none"/>
+              <line x1="20" y1="27" x2="52" y2="27" stroke="#1a3a6b" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="20" y1="30" x2="52" y2="30" stroke="#1a3a6b" stroke-width="1.2" stroke-linecap="round"/>
+
+              <rect x="14" y="36" width="44" height="10" rx="2" stroke="#1a3a6b" stroke-width="2" fill="none"/>
+              <line x1="20" y1="39" x2="52" y2="39" stroke="#1a3a6b" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="20" y1="42" x2="52" y2="42" stroke="#1a3a6b" stroke-width="1.2" stroke-linecap="round"/>
+
+              <rect x="14" y="48" width="44" height="10" rx="2" stroke="#1a3a6b" stroke-width="2" fill="none"/>
+              <line x1="20" y1="51" x2="52" y2="51" stroke="#1a3a6b" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="20" y1="54" x2="52" y2="54" stroke="#1a3a6b" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pack-card__info">
+            <h3>Pack 3</h3>
+            <p>Comforter, Seat cover, Curtains, Fleece blankets</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Additional (Optional) -->
+    <section class="section">
+      <h2 class="section__title">Additional <span class="optional">(Optional)</span></h2>
+      <div class="addon-grid">
+
+        <!-- Fabric Conditioned -->
+        <div class="addon-card" onclick="toggleAddon(this)">
+          <div class="addon-card__icon">
+            <!-- Detergent basket with snowflakes -->
+            <svg width="60" height="60" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Snowflake left -->
+              <line x1="10" y1="20" x2="10" y2="30" stroke="#1a3a6b" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="5"  y1="25" x2="15" y2="25" stroke="#1a3a6b" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="7"  y1="22" x2="13" y2="28" stroke="#1a3a6b" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="13" y1="22" x2="7"  y2="28" stroke="#1a3a6b" stroke-width="1.4" stroke-linecap="round"/>
+              <!-- Snowflake right -->
+              <line x1="58" y1="10" x2="58" y2="18" stroke="#1a3a6b" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="54" y1="14" x2="62" y2="14" stroke="#1a3a6b" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="55" y1="11" x2="61" y2="17" stroke="#1a3a6b" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="61" y1="11" x2="55" y2="17" stroke="#1a3a6b" stroke-width="1.4" stroke-linecap="round"/>
+              <!-- Basket body -->
+              <path d="M22 34 L24 58 L48 58 L50 34 Z" stroke="#1a3a6b" stroke-width="2" stroke-linejoin="round" fill="none"/>
+              <!-- Basket handle -->
+              <path d="M26 34 C26 26 46 26 46 34" stroke="#1a3a6b" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <!-- Basket lines -->
+              <line x1="30" y1="40" x2="30" y2="56" stroke="#1a3a6b" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="36" y1="38" x2="36" y2="57" stroke="#1a3a6b" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="42" y1="40" x2="42" y2="56" stroke="#1a3a6b" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="23" y1="44" x2="49" y2="44" stroke="#1a3a6b" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="23" y1="50" x2="49" y2="50" stroke="#1a3a6b" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="addon-card__info">
+            <h3>Fabric Conditioned</h3>
+            <p class="addon-card__price">+₱30.00</p>
+          </div>
+        </div>
+
+        <!-- Stain Removal -->
+        <div class="addon-card" onclick="toggleAddon(this)">
+          <div class="addon-card__icon">
+            <!-- T-shirt with stain splat -->
+            <svg width="60" height="60" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- T-shirt -->
+              <path d="M22 12 L12 22 L20 26 L20 56 L52 56 L52 26 L60 22 L50 12 C49 15 44 18 36 18 C28 18 23 15 22 12Z"
+                    stroke="#1a3a6b" stroke-width="2" stroke-linejoin="round" fill="none"/>
+              <!-- Stain blob -->
+              <circle cx="36" cy="38" r="7" stroke="#1a3a6b" stroke-width="1.8" fill="none"/>
+              <circle cx="30" cy="34" r="3.5" stroke="#1a3a6b" stroke-width="1.6" fill="none"/>
+              <circle cx="42" cy="34" r="2.5" stroke="#1a3a6b" stroke-width="1.5" fill="none"/>
+              <circle cx="36" cy="46" r="2.2" stroke="#1a3a6b" stroke-width="1.4" fill="none"/>
+            </svg>
+          </div>
+          <div class="addon-card__info">
+            <h3>Stain Removal</h3>
+            <p class="addon-card__price">+₱5.00</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom actions -->
+    <div class="bottom-actions">
+      <button class="btn-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back
+      </button>
+      <button class="btn-next">
+        Next
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+
+  </main>
+
+  <script>
+    function selectPack(card) {
+      document.querySelectorAll('.pack-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    }
+    function toggleAddon(card) {
+      card.classList.toggle('selected');
+    }
+  </script>
+
+</body>
+</html>
