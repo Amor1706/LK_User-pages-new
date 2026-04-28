@@ -1,0 +1,140 @@
+/* ============================================================
+   LAUNDRY KING — buttons.css
+   Scope: all button variants · bottom actions bar
+   ============================================================ */
+
+/* ── Shared button base ── */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s, border-color 0.15s, transform 0.12s, box-shadow 0.15s;
+  white-space: nowrap;
+  user-select: none;
+}
+
+button:active {
+  transform: translateY(0) !important;
+}
+
+/* ============================================================
+   PRIMARY BUTTON  (filled navy)
+   Usage: Next, Done, Check Status, Check Details
+   ============================================================ */
+
+.btn-primary,
+.btn-next,
+.btn-check-status,
+.btn-check-details {
+  padding: 10px 24px;
+  background: var(--navy);
+  color: var(--white);
+}
+
+.btn-primary:hover,
+.btn-next:hover,
+.btn-check-status:hover,
+.btn-check-details:hover {
+  background: var(--navy-mid);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   SECONDARY BUTTON  (outline navy)
+   Usage: Back
+   ============================================================ */
+
+.btn-back {
+  padding: 10px 24px;
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--navy);
+}
+
+.btn-back:hover {
+  background: var(--navy-light);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   TOGGLE BUTTON  (card-style select)
+   Usage: Delivery / Pick up, Online Payment / Cash
+   ============================================================ */
+
+.toggle-btn {
+  padding: 18px 24px;
+  background: var(--card-bg);
+  color: var(--navy);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  text-align: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.toggle-btn:hover {
+  border-color: #a8c4e8;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.toggle-btn.selected {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 1px var(--navy), var(--shadow-md);
+  background: var(--white);
+}
+
+/* ============================================================
+   ADDRESS ARROW BUTTON
+   Usage: small circular arrow on address card
+   ============================================================ */
+
+.address-card__arrow {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: var(--navy-light);
+  border-radius: 50%;
+  justify-content: center;
+}
+
+.address-card__arrow:hover {
+  background: #c5d9f0;
+  transform: translateX(2px);
+}
+
+/* ============================================================
+   BOTTOM ACTIONS BAR
+   (fixed footer strip containing Back / Next / Done buttons)
+   ============================================================ */
+
+.bottom-actions {
+  position: fixed;
+  bottom: 0;
+  left: var(--sidebar-w);
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 32px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  z-index: 90;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .bottom-actions {
+    left: 0;
+    padding: 14px 16px;
+  }
+}

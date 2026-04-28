@@ -1,0 +1,220 @@
+/* ============================================================
+   LAUNDRY KING — layout.css
+   Scope: page shell · sidebar · main area · topbar · sections
+   ============================================================ */
+
+:root {
+  --sidebar-w: 230px;
+
+  /* active nav state */
+  --active-bg:   #dce8f8;
+  --active-text: #1a3a6b;
+  --sidebar-bg:  #ffffff;
+}
+
+/* ── Page shell ── */
+body {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 16px 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Logo / brand row */
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 6px 28px;
+}
+
+.sidebar__brand {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+}
+
+/* Section label (e.g. "Menu", "General") */
+.sidebar__section-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 0 8px;
+  margin-bottom: 6px;
+}
+
+/* Nav group wrappers */
+.sidebar__nav {
+  margin-bottom: 8px;
+}
+
+.sidebar__nav--general {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+/* Individual nav items */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  margin-bottom: 2px;
+}
+
+.nav-item svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+
+.nav-item:hover {
+  background: var(--bg);
+  color: var(--navy);
+}
+
+.nav-item:hover svg {
+  opacity: 1;
+}
+
+.nav-item.active {
+  background: var(--active-bg);
+  color: var(--active-text);
+  font-weight: 600;
+}
+
+.nav-item.active svg {
+  opacity: 1;
+}
+
+/* ============================================================
+   MAIN CONTENT AREA
+   ============================================================ */
+
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  padding: 24px 32px 100px;
+  min-height: 100vh;
+}
+
+/* ── Topbar (user info, top-right) ── */
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.topbar__user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--navy-mid);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.topbar__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.topbar__email {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ── Sections ── */
+.section {
+  margin-bottom: 28px;
+}
+
+.section__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+  letter-spacing: -0.2px;
+}
+
+/* ── Optional label (used inside section titles) ── */
+.optional {
+  font-weight: 500;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .main {
+    padding: 20px 20px 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --sidebar-w: 0px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 16px 16px 90px;
+  }
+}
