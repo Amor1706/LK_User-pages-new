@@ -1,6 +1,6 @@
 /* ============================================================
    LAUNDRY KING — buttons.css
-   Scope: all button variants · bottom actions bar
+   Scope: all button variants · bottom actions bar · icon buttons
    ============================================================ */
 
 /* ── Shared button base ── */
@@ -26,7 +26,6 @@ button:active {
 
 /* ============================================================
    PRIMARY BUTTON  (filled navy)
-   Usage: Next, Done, Check Status, Check Details
    ============================================================ */
 
 .btn-primary,
@@ -48,7 +47,6 @@ button:active {
 
 /* ============================================================
    SECONDARY BUTTON  (outline navy)
-   Usage: Back
    ============================================================ */
 
 .btn-back {
@@ -65,7 +63,6 @@ button:active {
 
 /* ============================================================
    TOGGLE BUTTON  (card-style select)
-   Usage: Delivery / Pick up, Online Payment / Cash
    ============================================================ */
 
 .toggle-btn {
@@ -94,7 +91,6 @@ button:active {
 
 /* ============================================================
    ADDRESS ARROW BUTTON
-   Usage: small circular arrow on address card
    ============================================================ */
 
 .address-card__arrow {
@@ -113,8 +109,52 @@ button:active {
 }
 
 /* ============================================================
+   ICON BUTTON  (small square icon action buttons)
+   Usage: Export, Add, Filter icons in page headers
+   ============================================================ */
+
+.icon-btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: var(--white);
+  color: var(--navy);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.icon-btn:hover {
+  background: var(--navy-light);
+  border-color: var(--navy);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   SALES DROPDOWN  (select pill inside Sales cards)
+   ============================================================ */
+
+.sales-dropdown {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--navy-light);
+  border: none;
+  border-radius: 20px;
+  padding: 4px 14px 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+  cursor: pointer;
+  outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%231a3a6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 24px;
+}
+
+/* ============================================================
    BOTTOM ACTIONS BAR
-   (fixed footer strip containing Back / Next / Done buttons)
    ============================================================ */
 
 .bottom-actions {

@@ -1,6 +1,6 @@
 /* ============================================================
    LAUNDRY KING — layout.css
-   Scope: page shell · sidebar · main area · topbar · sections
+   Scope: page shell · sidebar · main area · topbar · sections · page system
    ============================================================ */
 
 :root {
@@ -128,6 +128,59 @@ body {
   min-height: 100vh;
 }
 
+/* ── Page visibility system ── */
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header--row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.page-header__welcome {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.page-header__title {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.page-header__sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.page-header__date {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  white-space: nowrap;
+  margin-top: 10px;
+}
+
 /* ── Topbar (user info, top-right) ── */
 .topbar {
   display: flex;
@@ -204,6 +257,10 @@ body {
   .main {
     padding: 20px 20px 100px;
   }
+
+  .page-header__title {
+    font-size: 28px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -218,5 +275,14 @@ body {
   .main {
     margin-left: 0;
     padding: 16px 16px 90px;
+  }
+
+  .page-header--row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .page-header__date {
+    font-size: 16px;
   }
 }
