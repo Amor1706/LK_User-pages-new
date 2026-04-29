@@ -35,6 +35,8 @@ body {
   left: 0;
   bottom: 0;
   z-index: 100;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
   box-shadow: var(--shadow-sm);
 }
 
