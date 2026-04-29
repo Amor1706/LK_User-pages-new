@@ -40,6 +40,17 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
+/* icons */
+
+.icons {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
 /* Logo / brand row */
 .sidebar__logo {
   width: 50px;
