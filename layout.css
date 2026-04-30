@@ -8,7 +8,7 @@
 
   /* active nav state */
   --active-bg:   #dce8f8;
-  --active-text: #1a3a6b;
+  --active-text: #10367D;
   --sidebar-bg:  #ffffff;
 }
 
@@ -74,11 +74,10 @@ body {
 
 /* Section label (e.g. "Menu", "General") */
 .sidebar__section-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-muted);
+  font-size: 10pt;
+  font-weight: 350;
+  color: var(--black);
   letter-spacing: 0.6px;
-  text-transform: uppercase;
   padding: 0 8px;
   margin-bottom: 6px;
 }
@@ -164,17 +163,17 @@ body {
 
 .page-header--row {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 16px;
 }
 
 .page-header__welcome {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--black);
   font-weight: 500;
   margin-bottom: 2px;
-}
+} 
 
 .page-header__title {
   font-size: 36px;
@@ -186,7 +185,7 @@ body {
 
 .page-header__sub {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--black);
   margin-top: 4px;
 }
 
@@ -195,7 +194,7 @@ body {
   font-weight: 700;
   color: var(--navy);
   white-space: nowrap;
-  margin-top: 10px;
+  margin-top: 0;
 }
 
 /* ── Topbar (user info, top-right) ── */

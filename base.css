@@ -8,9 +8,10 @@
 /* ── Design Tokens ── */
 :root {
   /* Brand colours */
-  --navy:        #1a3a6b;
+  --navy:        #10367d;
   --navy-mid:    #2a4f8f;
   --navy-light:  #dce8f8;
+  --sky-blue:    #74B4DA;
 
   /* Surface & text */
   --bg:          #f0f2f5;
@@ -18,11 +19,13 @@
   --card-bg:     #ffffff;
   --text-main:   #1a1a2e;
   --text-muted:  #6b7a99;
+  --black:       #000000;
 
   /* Borders & shadows */
   --border:      #e2e8f4;
   --shadow-sm:   0 2px 8px  rgba(26, 58, 107, 0.07);
   --shadow-md:   0 4px 16px rgba(26, 58, 107, 0.13);
+  --drop-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.25);
 
   /* Border radii */
   --radius-sm:   8px;
