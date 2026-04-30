@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laundry King — Transactions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="buttons.css" />
+  <link rel="stylesheet" href="layout.css" />
+  <link rel="stylesheet" href="main-styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================ SIDEBAR ============================================================ -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="14" cy="14" r="13" stroke="#1a3a6b" stroke-width="2"/>
+        <circle cx="14" cy="14" r="8" stroke="#1a3a6b" stroke-width="1.5"/>
+        <circle cx="14" cy="14" r="3" fill="#1a3a6b"/>
+        <path d="M14 5 A9 9 0 0 1 23 14" stroke="#1a3a6b" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="sidebar__brand">Laundry King</span>
+    </div>
+
+    <nav class="sidebar__nav">
+      <div class="sidebar__section-label">Menu</div>
+      <a class="nav-item" href="dashboard.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+        </svg>
+        Dashboard
+      </a>
+      <a class="nav-item" href="inventory.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        </svg>
+        Inventory
+      </a>
+      <a class="nav-item" href="laundry-status.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+        Laundry Status
+      </a>
+      <a class="nav-item active" href="transactions.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>
+        </svg>
+        Transactions
+      </a>
+      <a class="nav-item" href="sales.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+        Sales
+      </a>
+    </nav>
+
+    <nav class="sidebar__nav sidebar__nav--general">
+      <div class="sidebar__section-label">General</div>
+      <a class="nav-item" href="#">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+        </svg>
+        Settings
+      </a>
+      <a class="nav-item" href="#">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+        </svg>
+        Profile
+      </a>
+      <a class="nav-item" href="#">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Log Out
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ============================================================ MAIN ============================================================ -->
+  <main class="main">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="topbar__user">
+        <div class="topbar__avatar">UN</div>
+        <div class="topbar__info">
+          <span class="topbar__name">User Name</span>
+          <span class="topbar__email">username@email.com</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header page-header--row">
+      <div>
+        <h1 class="page-header__title">Transactions</h1>
+        <p class="page-header__sub">Lorem ipsum dolor sit amet, consectetur</p>
+      </div>
+      <div class="inv-actions">
+        <button class="icon-btn" title="Filter">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+          </svg>
+        </button>
+        <button class="icon-btn" title="Export">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </button>
+        <button class="icon-btn" title="Add">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Today -->
+    <div class="txn-section">
+      <div class="txn-section__label">Today</div>
+      <div class="data-table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>User ID</th>
+              <th>Username</th>
+              <th>Laundry Service</th>
+              <th>Amount</th>
+              <th>Payment Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Yesterday -->
+    <div class="txn-section">
+      <div class="txn-section__label">Yesterday</div>
+      <div class="data-table-wrapper data-table-wrapper--navy">
+        <table class="data-table data-table--navy">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>User ID</th>
+              <th>Username</th>
+              <th>Laundry Service</th>
+              <th>Amount</th>
+              <th>Payment Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td>Paid</td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td>Paid</td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td>Paid</td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td>Paid</td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td>Paid</td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td>Paid</td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td>Paid</td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td>Paid</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Date -->
+    <div class="txn-section">
+      <div class="txn-section__label">Date</div>
+      <div class="data-table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>User ID</th>
+              <th>Username</th>
+              <th>Laundry Service</th>
+              <th>Amount</th>
+              <th>Payment Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
+            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>
