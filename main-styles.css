@@ -651,9 +651,9 @@
   gap: 14px;
 }
 
-.sales-kpi-card {
+/* .sales-kpi-card {
   /* extends .dashboard-card */
-}
+*/
 
 .sales-kpi-header {
   display: flex;
