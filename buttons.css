@@ -125,6 +125,15 @@ button:active {
   box-shadow: var(--shadow-sm);
 }
 
+.btn-png {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: var(--white);
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+}
+
 .icon-btn:hover {
   background: var(--navy-light);
   border-color: var(--navy);
