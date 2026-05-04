@@ -585,16 +585,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-.ls-stat-card--active {
-  background: #a8c4e8;
-  border-color: #a8c4e8;
-}
-
-.ls-stat-card--active .ls-stat-card__label,
-.ls-stat-card--active .ls-stat-card__sublabel {
-  color: var(--navy);
-}
-
 .ls-stat-card__label {
   font-size: 13px;
   font-weight: 600;
@@ -605,7 +595,7 @@
 .ls-stat-card__value {
   font-size: 48px;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--black);
   letter-spacing: -2px;
   line-height: 1;
   margin-bottom: 8px;
@@ -634,7 +624,7 @@
 .ls-detail-col__title {
   font-size: 14px;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--black);
   margin-bottom: 14px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border);

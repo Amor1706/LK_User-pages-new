@@ -82,11 +82,6 @@
         <p class="page-header__sub">Here are your previous transactions.</p>
       </div>
       <div class="inv-actions">
-        <button class="icon-btn" title="Filter">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
-          </svg>
-        </button>
         <button class="icon-btn" title="Edit">
           <img src="other icons/edit.png" alt="edit" class="btn-png">
         </button>
@@ -100,7 +95,16 @@
 
     <!-- Today -->
     <div class="txn-section">
-      <div class="txn-section__label">Today</div>
+      <select class="transactions-dropdown" id="txn-filter">
+        <option value="today">Today</option>
+        <option value="yesterday">Yesterday</option>
+        <option value="week">This Week</option>
+        <option value="last-week">Last Week</option>
+        <option value="month">This Month</option>
+        <option value="last-month">Last Month</option>
+        <option value="three-months">Last 3 Months</option>
+      </select>
+
       <div class="data-table-wrapper">
         <table class="data-table">
           <thead>
@@ -114,23 +118,77 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
-            <tr><td>019283</td><td>0192748</td><td>Rizal Park</td><td>Full Service</td><td>350</td><td><span class="paid-badge">Paid</span></td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
   </main>
+
+  <script>
+    // Define transaction data for each filter
+    const tableData = {
+      today: [
+        ['019283', '0192748', 'Rizal Park', 'Full Service', '350', 'Paid'],
+        ['019284', '0192749', 'John Doe', 'Dry Only', '200', 'Paid'],
+        ['019285', '0192750', 'Jane Smith', 'Full Service', '350', 'Paid'],
+      ],
+      yesterday: [
+        ['019280', '0192745', 'Mike Johnson', 'Dry Only', '450', 'Paid'],
+        ['019281', '0192746', 'Alice Brown', 'Full Service', '200', 'Pending'],
+      ],
+      week: [
+        ['019270', '0192735', 'Bob Wilson', 'Full Service', '350', 'Paid'],
+        ['019271', '0192736', 'Sarah Davis', 'Full Service', '150', 'Paid'],
+        ['019272', '0192737', 'Tom Harris', 'Full Service', '350', 'Paid'],
+      ],
+      'last-week': [
+        ['019260', '0192725', 'Emma Wilson', 'Quick Wash', '200', 'Paid'],
+        ['019261', '0192726', 'Chris Martin', 'Dry Clean', '450', 'Paid'],
+      ],
+      month: [
+        ['019250', '0192715', 'Lisa Anderson', 'Full Service', '350', 'Paid'],
+        ['019251', '0192716', 'David Lee', 'Quick Wash', '200', 'Paid'],
+        ['019252', '0192717', 'Rachel Green', 'Express Wash', '150', 'Paid'],
+      ],
+      'last-month': [
+        ['019240', '0192705', 'Kevin White', 'Full Service', '350', 'Paid'],
+      ],
+      'three-months': [
+        ['019230', '0192695', 'Maria Garcia', 'Dry Clean', '450', 'Paid'],
+        ['019231', '0192696', 'James Brown', 'Quick Wash', '200', 'Paid'],
+      ]
+    };
+
+    // Get dropdown and table
+    const dropdown = document.getElementById('txn-filter');
+    const tableBody = document.querySelector('.data-table tbody');
+
+    // Function to populate table
+    const populateTable = (filterKey) => {
+      const data = tableData[filterKey];
+      tableBody.innerHTML = '';
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${row[0]}</td>
+          <td>${row[1]}</td>
+          <td>${row[2]}</td>
+          <td>${row[3]}</td>
+          <td>${row[4]}</td>
+          <td><span class="paid-badge">${row[5]}</span></td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    };
+
+    // Load "today" data on page load
+    populateTable('today');
+
+    // Update table when dropdown changes
+    dropdown.addEventListener('change', (e) => {
+      populateTable(e.target.value);
+    });
+  </script>
 </body>
 </html>
