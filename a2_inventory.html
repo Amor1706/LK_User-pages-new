@@ -10,6 +10,16 @@
   <link rel="stylesheet" href="buttons.css" />
   <link rel="stylesheet" href="layout.css" />
   <link rel="stylesheet" href="main-styles.css" />
+  <style>
+    .data-table td[contenteditable="true"] {
+      outline: 2px dashed rgba(42, 107, 181, 0.5);
+      background: #f7fbff;
+    }
+
+    .icon-btn.editing {
+      background: rgba(42, 107, 181, 0.08);
+    }
+  </style>
 </head>
 <body>
 
@@ -98,7 +108,7 @@
         <span class="inv-legend-dot" style="background:#2a6bb5;margin-left:12px;"></span>Out of Stock: 3
       </div>
       <div class="inv-actions">
-        <button class="icon-btn" title="Edit">
+        <button id="inventory-edit-btn" class="icon-btn" title="Edit">
           <img src="other icons/edit.png" alt="edit" class="btn-png">
         </button>
         <button class="icon-btn" title="Add">
@@ -130,26 +140,80 @@
   </main>
 
   <script>
-    // Populate Inventory table rows
-    const invData = Array.from({ length: 13 }, () => ({
-      name: 'Downy na Pula',
-      category: 'Fabcon',
-      vendor: 'Sa shapi binili',
-      remarks: '3L',
-      stock: 3,
-      status: 'In Stock'
-    }));
-
+    const STORAGE_KEY = 'laundryKingInventory';
     const invBody = document.getElementById('inventory-body');
-    invData.forEach(r => {
-      invBody.innerHTML += `<tr>
-        <td>${r.name}</td>
-        <td>${r.category}</td>
-        <td>${r.vendor}</td>
-        <td>${r.remarks}</td>
-        <td>${r.stock}</td>
-        <td><span class="status-badge-instock">${r.status}</span></td>
-      </tr>`;
+
+    function getDefaultData() {
+      return Array.from({ length: 13 }, () => ({
+        name: 'Downy na Pula',
+        category: 'Fabcon',
+        vendor: 'Sa shapi binili',
+        remarks: '3L',
+        stock: 3,
+        status: 'In Stock'
+      }));
+    }
+
+    function loadInventoryData() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : getDefaultData();
+    }
+
+    function renderInventory(data) {
+      invBody.innerHTML = '';
+      data.forEach(r => {
+        invBody.innerHTML += `<tr>
+          <td>${r.name}</td>
+          <td>${r.category}</td>
+          <td>${r.vendor}</td>
+          <td>${r.remarks}</td>
+          <td>${r.stock}</td>
+          <td><span class="status-badge-instock">${r.status}</span></td>
+        </tr>`;
+      });
+    }
+
+    function saveInventoryData() {
+      const rows = Array.from(invBody.querySelectorAll('tr'));
+      const data = rows.map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+          name: cells[0].innerText.trim(),
+          category: cells[1].innerText.trim(),
+          vendor: cells[2].innerText.trim(),
+          remarks: cells[3].innerText.trim(),
+          stock: cells[4].innerText.trim(),
+          status: cells[5].innerText.trim()
+        };
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    renderInventory(loadInventoryData());
+
+    const editButton = document.getElementById('inventory-edit-btn');
+    editButton.addEventListener('click', () => {
+      const isEditing = editButton.classList.toggle('editing');
+      editButton.title = isEditing ? 'Finish editing' : 'Edit';
+
+      invBody.querySelectorAll('td').forEach(td => {
+        td.contentEditable = isEditing;
+        td.classList.toggle('editable', isEditing);
+      });
+
+      if (isEditing) {
+        const firstCell = invBody.querySelector('td[contenteditable="true"]');
+        firstCell?.focus();
+      } else {
+        saveInventoryData();
+      }
+    });
+
+    window.addEventListener('beforeunload', () => {
+      const editing = editButton.classList.contains('editing');
+      if (editing) {
+        saveInventoryData();
+      }
     });
   </script>
 </body>
