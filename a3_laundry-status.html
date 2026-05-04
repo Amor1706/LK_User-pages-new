@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="buttons.css" />
   <link rel="stylesheet" href="layout.css" />
   <link rel="stylesheet" href="main-styles.css" />
+  <style>
+    .ls-order-card.editable {
+      outline: 1px dashed rgba(42, 107, 181, 0.5);
+      background: #f7fbff;
+    }
+    .ls-order-card .ls-order-value[contenteditable="true"] {
+      padding: 0 2px;
+    }
+  </style>
 </head>
 <body>
 
@@ -82,10 +91,10 @@
         <p class="page-header__sub">Here is the current status of customer orders.</p>
       </div>
       <div class="inv-actions">
-        <button class="icon-btn" title="Edit">
+        <button id="ls-edit-btn" class="icon-btn" title="Edit">
           <img src="other icons/edit.png" alt="edit" class="btn-png">
         </button>
-        <button class="icon-btn" title="Add">
+        <button id="ls-add-btn" class="icon-btn" title="Add">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
@@ -140,17 +149,119 @@
   </main>
 
   <script>
-    // Populate Laundry Status order lists
-    const lsOrder = () => `<div class="ls-order-card">
-      <div><strong>Transaction ID:</strong> 100032</div>
-      <div><strong>Username:</strong> abcdefg</div>
-      <div><strong>Service:</strong> Full Service</div>
-    </div>`;
+    const STORAGE_KEY = 'laundryKingLaundryStatus';
+    const sections = {
+      washing: document.getElementById('ls-washing'),
+      drying: document.getElementById('ls-drying'),
+      folding: document.getElementById('ls-folding'),
+      delivery: document.getElementById('ls-delivery')
+    };
 
-    ['ls-washing', 'ls-drying', 'ls-folding', 'ls-delivery'].forEach(id => {
-      const el = document.getElementById(id);
-      const count = id === 'ls-delivery' ? 4 : 3;
-      for (let i = 0; i < count; i++) el.innerHTML += lsOrder();
+    function getDefaultOrders() {
+      return {
+        washing: Array.from({ length: 3 }, () => ({
+          transactionId: '100032',
+          username: 'abcdefg',
+          service: 'Full Service'
+        })),
+        drying: Array.from({ length: 3 }, () => ({
+          transactionId: '100032',
+          username: 'abcdefg',
+          service: 'Full Service'
+        })),
+        folding: Array.from({ length: 3 }, () => ({
+          transactionId: '100032',
+          username: 'abcdefg',
+          service: 'Full Service'
+        })),
+        delivery: Array.from({ length: 4 }, () => ({
+          transactionId: '100032',
+          username: 'abcdefg',
+          service: 'Full Service'
+        }))
+      };
+    }
+
+    function loadOrders() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : getDefaultOrders();
+    }
+
+    function lsOrder(order) {
+      return `<div class="ls-order-card">
+        <div><strong>Transaction ID:</strong> <span class="ls-order-value">${order.transactionId}</span></div>
+        <div><strong>Username:</strong> <span class="ls-order-value">${order.username}</span></div>
+        <div><strong>Service:</strong> <span class="ls-order-value">${order.service}</span></div>
+      </div>`;
+    }
+
+    function renderOrders(data) {
+      Object.entries(sections).forEach(([key, container]) => {
+        container.innerHTML = '';
+        data[key].forEach(order => {
+          container.innerHTML += lsOrder(order);
+        });
+      });
+    }
+
+    function saveOrders() {
+      const data = {};
+      Object.entries(sections).forEach(([key, container]) => {
+        data[key] = Array.from(container.querySelectorAll('.ls-order-card')).map(card => {
+          const values = card.querySelectorAll('.ls-order-value');
+          return {
+            transactionId: values[0].innerText.trim(),
+            username: values[1].innerText.trim(),
+            service: values[2].innerText.trim()
+          };
+        });
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function setEditing(enabled) {
+      document.querySelectorAll('.ls-order-card').forEach(card => {
+        card.classList.toggle('editable', enabled);
+        card.querySelectorAll('.ls-order-value').forEach(span => {
+          span.contentEditable = enabled;
+        });
+      });
+    }
+
+    function addOrder() {
+      const section = prompt("Choose section to add to: washing, drying, folding, delivery");
+      if (!section || !sections[section]) return;
+      sections[section].innerHTML += lsOrder({ transactionId: '', username: '', service: '' });
+      setEditing(true);
+      const editButton = document.getElementById('ls-edit-btn');
+      editButton.classList.add('editing');
+      editButton.title = 'Finish editing';
+      const newValue = sections[section].querySelector('.ls-order-card:last-child .ls-order-value');
+      newValue?.focus();
+    }
+
+    renderOrders(loadOrders());
+
+    const editButton = document.getElementById('ls-edit-btn');
+    const addButton = document.getElementById('ls-add-btn');
+
+    editButton.addEventListener('click', () => {
+      const isEditing = editButton.classList.toggle('editing');
+      editButton.title = isEditing ? 'Finish editing' : 'Edit';
+      setEditing(isEditing);
+      if (!isEditing) saveOrders();
+      if (isEditing) {
+        const firstValue = document.querySelector('.ls-order-value');
+        firstValue?.focus();
+      }
+    });
+
+    addButton.addEventListener('click', addOrder);
+
+    window.addEventListener('beforeunload', () => {
+      if (editButton.classList.contains('editing')) {
+        saveOrders();
+      }
     });
   </script>
 </body>
