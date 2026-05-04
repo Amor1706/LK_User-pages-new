@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="buttons.css" />
   <link rel="stylesheet" href="layout.css" />
   <link rel="stylesheet" href="main-styles.css" />
+  <style>
+    .data-table td[contenteditable="true"] {
+      outline: 2px dashed rgba(42, 107, 181, 0.5);
+      background: #f7fbff;
+    }
+    .icon-btn.editing {
+      background: rgba(42, 107, 181, 0.08);
+    }
+  </style>
 </head>
 <body>
 
@@ -82,10 +91,10 @@
         <p class="page-header__sub">Monitor your cash flow here!</p>
       </div>
       <div class="inv-actions">
-        <button class="icon-btn" title="Edit">
+        <button id="sales-edit-btn" class="icon-btn" title="Edit">
           <img src="other icons/edit.png" alt="edit" class="btn-png">
         </button>
-        <button class="icon-btn" title="Add">
+        <button id="sales-add-btn" class="icon-btn" title="Add">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
@@ -103,19 +112,34 @@
         <div class="sales-kpi-row">
           <div class="dashboard-card sales-kpi-card">
             <div class="sales-kpi-header">
-              <span class="dashboard-card__title">Total Daily Sales</span>
-              <select class="sales-dropdown"><option>Today</option></select>
+              <span class="dashboard-card__title">Total Sales</span>
+              <select class="sales-dropdown"><option>Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="week">This Week</option>
+                <option value="last-week">Last Week</option>
+                <option value="month">This Month</option>
+                <option value="last-month">Last Month</option>
+                <option value="three-months">Last 3 Months</option>
+              </select>
             </div>
             <div class="sales-kpi-value">2,890</div>
             <div class="sales-kpi-date">April 26, 2026</div>
           </div>
           <div class="dashboard-card sales-kpi-card">
             <div class="sales-kpi-header">
-              <span class="dashboard-card__title">Total Weekly Sales</span>
-              <select class="sales-dropdown"><option>This Week</option></select>
+              <span class="dashboard-card__title">Total Expenses</span>
+              <select class="sales-dropdown"><option>Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="week">This Week</option>
+                <option value="last-week">Last Week</option>
+                <option value="month">This Month</option>
+                <option value="last-month">Last Month</option>
+                <option value="three-months">Last 3 Months</option>
+              </select>
+              
             </div>
-            <div class="sales-kpi-value">11,620</div>
-            <div class="sales-kpi-date">April 26 – April 30</div>
+            <div class="sales-kpi-value">1,345</div>
+            <div class="sales-kpi-date">April 26</div>
           </div>
         </div>
 
@@ -123,7 +147,9 @@
         <div class="dashboard-card" style="margin-bottom:16px;">
           <div class="sales-table-header">
             <span class="dashboard-card__title">Sales Breakdown</span>
-            <select class="sales-dropdown"><option>Last month</option></select>
+            <select class="sales-dropdown"><option>Last Week</option>
+            <option value="yesterday">Last Month</option>
+            </select>
           </div>
           <table class="data-table data-table--plain" style="margin-top:14px;">
             <thead>
@@ -145,7 +171,9 @@
         <div class="dashboard-card">
           <div class="sales-table-header">
             <span class="dashboard-card__title">Expenses Breakdown</span>
-            <select class="sales-dropdown"><option>Last month</option></select>
+            <select class="sales-dropdown"><option>Last week</option>
+            <option> Last month </option>
+            </select>
           </div>
           <table class="data-table data-table--plain" style="margin-top:14px;">
             <thead>
@@ -175,7 +203,9 @@
         <div class="sales-donut-card">
           <div class="sales-donut-header">
             <span class="dashboard-card__title">Income</span>
-            <select class="sales-dropdown"><option>Last month</option></select>
+            <select class="sales-dropdown"><option>Last month</option>
+            <option value="Last week">Last week</option>
+            </select>
           </div>
           <div class="sales-donut-amount">Php 15,890</div>
           <div class="donut-wrapper">
@@ -197,7 +227,9 @@
         <div class="sales-donut-card">
           <div class="sales-donut-header">
             <span class="dashboard-card__title">Expenses</span>
-            <select class="sales-dropdown"><option>Last month</option></select>
+            <select class="sales-dropdown"><option>Last month</option>
+            <option value="Last week">Last week</option>
+            </select>
           </div>
           <div class="sales-donut-amount">Php 6,930</div>
           <div class="donut-wrapper">
@@ -219,5 +251,288 @@
     </div>
 
   </main>
+
+  <script>
+    const STORAGE_KEY = 'laundryKingSales';
+    
+    const kpiData = {
+      today: { sales: 2890, salesDate: 'April 26, 2026', expenses: 1345, expensesDate: 'April 26, 2026' },
+      yesterday: { sales: 2450, salesDate: 'April 25, 2026', expenses: 1200, expensesDate: 'April 25, 2026' },
+      week: { sales: 18920, salesDate: 'April 20-26, 2026', expenses: 8900, expensesDate: 'April 20-26, 2026' },
+      'last-week': { sales: 16780, salesDate: 'April 13-19, 2026', expenses: 7650, expensesDate: 'April 13-19, 2026' },
+      month: { sales: 62340, salesDate: 'April 2026', expenses: 28900, expensesDate: 'April 2026' },
+      'last-month': { sales: 58920, salesDate: 'March 2026', expenses: 26780, expensesDate: 'March 2026' },
+      'three-months': { sales: 185600, salesDate: 'Feb-Apr 2026', expenses: 82340, expensesDate: 'Feb-Apr 2026' }
+    };
+
+    const salesBreakdownData = {
+      'Last Week': [
+        ['Full Service', '128', '3', '15920'],
+        ['Dry Only', '52', '6', '10892']
+      ],
+      'Last Month': [
+        ['Full Service', '245', '8', '31560'],
+        ['Dry Only', '98', '12', '21280'],
+        ['Express Wash', '35', '2', '5250']
+      ]
+    };
+
+    const expensesBreakdownData = {
+      'Last week': [
+        ['Inventory Expenses', 'Detergent', '3', 'In kilo', '500'],
+        ['Inventory Expenses', 'Fabric Softener', '2', 'In kilo', '400'],
+        ['Salary Expenses', 'Salary', '4', 'Per Person', '2000']
+      ],
+      'Last month': [
+        ['Inventory Expenses', 'Detergent', '12', 'In kilo', '2000'],
+        ['Inventory Expenses', 'Fabric Softener', '8', 'In kilo', '1600'],
+        ['Inventory Expenses', 'Bleach', '4', 'In kilo', '800'],
+        ['Salary Expenses', 'Salary', '16', 'Per Person', '8000'],
+        ['Utilities', 'Electricity', '1', 'Monthly', '3000']
+      ]
+    };
+
+    const incomeChartData = {
+      'Last month': { amount: 'Php 15,890', fullService: 80, dryOnly: 80, others: 40 },
+      'Last week': { amount: 'Php 5,340', fullService: 60, dryOnly: 50, others: 30 }
+    };
+
+    const expensesChartData = {
+      'Last month': { amount: 'Php 6,930', inventory: 60, salary: 60, others: 30 },
+      'Last week': { amount: 'Php 2,450', inventory: 45, salary: 45, others: 20 }
+    };
+
+    const defaultSalesBreakdown = salesBreakdownData['Last Week'];
+    const defaultExpensesBreakdown = expensesBreakdownData['Last week'];
+
+    function updateIncomeChart(option) {
+      const data = incomeChartData[option];
+      if (!data) return;
+      
+      const incomeCard = document.querySelectorAll('.sales-donut-card')[0];
+      incomeCard.querySelector('.sales-donut-amount').textContent = data.amount;
+      
+      const svg = incomeCard.querySelector('svg');
+      const circles = svg.querySelectorAll('circle');
+      
+      circles[1].setAttribute('stroke-dasharray', `${data.fullService} 159.3`);
+      circles[1].setAttribute('stroke-dashoffset', `-${data.fullService / 2}`);
+      
+      circles[2].setAttribute('stroke-dasharray', `${data.dryOnly} 159.3`);
+      circles[2].setAttribute('stroke-dashoffset', `-${data.fullService + data.dryOnly / 2}`);
+      
+      circles[3].setAttribute('stroke-dasharray', `${data.others} 159.3`);
+      circles[3].setAttribute('stroke-dashoffset', `-${data.fullService + data.dryOnly + data.others / 2}`);
+    }
+
+    function updateExpensesChart(option) {
+      const data = expensesChartData[option];
+      if (!data) return;
+      
+      const expensesCard = document.querySelectorAll('.sales-donut-card')[1];
+      expensesCard.querySelector('.sales-donut-amount').textContent = data.amount;
+      
+      const svg = expensesCard.querySelector('svg');
+      const circles = svg.querySelectorAll('circle');
+      
+      circles[1].setAttribute('stroke-dasharray', `${data.inventory} 159.3`);
+      circles[1].setAttribute('stroke-dashoffset', `-${data.inventory / 2}`);
+      
+      circles[2].setAttribute('stroke-dasharray', `${data.salary} 159.3`);
+      circles[2].setAttribute('stroke-dashoffset', `-${data.inventory + data.salary / 2}`);
+      
+      circles[3].setAttribute('stroke-dasharray', `${data.others} 159.3`);
+      circles[3].setAttribute('stroke-dashoffset', `-${data.inventory + data.salary + data.others / 2}`);
+    }
+
+    function loadTableData() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return stored ? JSON.parse(stored) : {
+        salesBreakdown: defaultSalesBreakdown,
+        expensesBreakdown: defaultExpensesBreakdown
+      };
+    }
+
+    function saveTableData(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    let tableData = loadTableData();
+    const editButton = document.getElementById('sales-edit-btn');
+    const addButton = document.getElementById('sales-add-btn');
+
+    function updateKPICard(cardIndex, filter) {
+      const data = kpiData[filter];
+      if (!data) return;
+      
+      const cards = document.querySelectorAll('.sales-kpi-card');
+      const card = cards[cardIndex];
+      
+      if (cardIndex === 0) {
+        card.querySelector('.sales-kpi-value').textContent = data.sales.toLocaleString();
+        card.querySelector('.sales-kpi-date').textContent = data.salesDate;
+      } else {
+        card.querySelector('.sales-kpi-value').textContent = data.expenses.toLocaleString();
+        card.querySelector('.sales-kpi-date').textContent = data.expensesDate;
+      }
+    }
+
+    function updateSalesBreakdownTable(option) {
+      const rows = salesBreakdownData[option] || defaultSalesBreakdown;
+      const table = document.querySelectorAll('.data-table')[0];
+      const tbody = table.querySelector('tbody');
+      tbody.innerHTML = '';
+      rows.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = row.map(cell => `<td>${cell}</td>`).join('');
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateExpensesBreakdownTable(option) {
+      const rows = expensesBreakdownData[option] || defaultExpensesBreakdown;
+      const table = document.querySelectorAll('.data-table')[1];
+      const tbody = table.querySelector('tbody');
+      tbody.innerHTML = '';
+      rows.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = row.map(cell => `<td>${cell}</td>`).join('');
+        tbody.appendChild(tr);
+      });
+    }
+
+    const kpiDropdowns = document.querySelectorAll('.sales-dropdown');
+    kpiDropdowns.forEach((dropdown, idx) => {
+      if (idx < 2) {
+        dropdown.addEventListener('change', (e) => {
+          updateKPICard(idx, e.target.value);
+        });
+      } else if (idx === 2) {
+        dropdown.addEventListener('change', (e) => {
+          updateSalesBreakdownTable(e.target.value);
+        });
+      } else if (idx === 3) {
+        dropdown.addEventListener('change', (e) => {
+          updateExpensesBreakdownTable(e.target.value);
+        });
+      } else if (idx === 4) {
+        dropdown.addEventListener('change', (e) => {
+          updateIncomeChart(e.target.value);
+        });
+      } else if (idx === 5) {
+        dropdown.addEventListener('change', (e) => {
+          updateExpensesChart(e.target.value);
+        });
+      }
+    });
+
+    function setEditing(enabled) {
+      document.querySelectorAll('.data-table tbody td').forEach(td => {
+        td.contentEditable = enabled;
+        td.classList.toggle('editable', enabled);
+      });
+      editButton.classList.toggle('editing', enabled);
+      editButton.title = enabled ? 'Finish editing' : 'Edit';
+    }
+
+    function saveTableRows() {
+      const salesTable = document.querySelectorAll('.data-table')[0];
+      const expensesTable = document.querySelectorAll('.data-table')[1];
+      
+      tableData.salesBreakdown = Array.from(salesTable.querySelectorAll('tbody tr')).map(row => {
+        return Array.from(row.querySelectorAll('td')).map(td => td.innerText.trim());
+      });
+      
+      tableData.expensesBreakdown = Array.from(expensesTable.querySelectorAll('tbody tr')).map(row => {
+        return Array.from(row.querySelectorAll('td')).map(td => td.innerText.trim());
+      });
+      
+      saveTableData(tableData);
+    }
+
+    function addSalesRow() {
+      const table = document.querySelectorAll('.data-table')[0];
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td></td><td></td><td></td><td></td>';
+      table.querySelector('tbody').appendChild(tr);
+      setEditing(true);
+      tr.querySelector('td')?.focus();
+    }
+
+    function addExpensesRow() {
+      const table = document.querySelectorAll('.data-table')[1];
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td></td><td></td><td></td><td></td><td></td>';
+      table.querySelector('tbody').appendChild(tr);
+      setEditing(true);
+      tr.querySelector('td')?.focus();
+    }
+
+    editButton.addEventListener('click', () => {
+      const isEditing = !editButton.classList.contains('editing');
+      setEditing(isEditing);
+      if (!isEditing) {
+        saveTableRows();
+      } else {
+        document.querySelector('.data-table tbody td')?.focus();
+      }
+    });
+
+    addButton.addEventListener('click', () => {
+      if (!editButton.classList.contains('editing')) {
+        setEditing(true);
+      }
+      const choice = prompt('Add row to: sales or expenses?');
+      if (choice === 'sales') {
+        addSalesRow();
+      } else if (choice === 'expenses') {
+        addExpensesRow();
+      }
+      // Auto-save after adding row
+      setTimeout(() => saveTableRows(), 100);
+    });
+
+    // Save data when pressing Enter in editable cells
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && editButton.classList.contains('editing')) {
+        const activeCell = document.activeElement;
+        if (activeCell && activeCell.contentEditable === 'true') {
+          saveTableRows();
+        }
+      }
+    });
+
+    window.addEventListener('beforeunload', () => {
+      if (editButton.classList.contains('editing')) {
+        saveTableRows();
+      }
+    });
+
+    // Initialize tables on page load with saved data
+    function initializeTables() {
+      const salesTable = document.querySelectorAll('.data-table')[0];
+      const expensesTable = document.querySelectorAll('.data-table')[1];
+      
+      const salesRows = tableData.salesBreakdown || defaultSalesBreakdown;
+      const expensesRows = tableData.expensesBreakdown || defaultExpensesBreakdown;
+      
+      salesTable.querySelector('tbody').innerHTML = '';
+      salesRows.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = row.map(cell => `<td>${cell}</td>`).join('');
+        salesTable.querySelector('tbody').appendChild(tr);
+      });
+      
+      expensesTable.querySelector('tbody').innerHTML = '';
+      expensesRows.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = row.map(cell => `<td>${cell}</td>`).join('');
+        expensesTable.querySelector('tbody').appendChild(tr);
+      });
+    }
+
+    initializeTables();
+  </script>
+
 </body>
 </html>
