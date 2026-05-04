@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="buttons.css" />
   <link rel="stylesheet" href="layout.css" />
   <link rel="stylesheet" href="main-styles.css" />
+  <style>
+    .data-table td[contenteditable="true"] {
+      outline: 2px dashed rgba(42, 107, 181, 0.5);
+      background: #f7fbff;
+    }
+    .icon-btn.editing {
+      background: rgba(42, 107, 181, 0.08);
+    }
+  </style>
 </head>
 <body>
 
@@ -82,10 +91,10 @@
         <p class="page-header__sub">Here are your previous transactions.</p>
       </div>
       <div class="inv-actions">
-        <button class="icon-btn" title="Edit">
+        <button id="txn-edit-btn" class="icon-btn" title="Edit">
           <img src="other icons/edit.png" alt="edit" class="btn-png">
         </button>
-        <button class="icon-btn" title="Add">
+        <button id="txn-add-btn" class="icon-btn" title="Add">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
@@ -126,8 +135,8 @@
   </main>
 
   <script>
-    // Define transaction data for each filter
-    const tableData = {
+    const STORAGE_KEY = 'laundryKingTransactions';
+    const defaultData = {
       today: [
         ['019283', '0192748', 'Rizal Park', 'Full Service', '350', 'Paid'],
         ['019284', '0192749', 'John Doe', 'Dry Only', '200', 'Paid'],
@@ -160,35 +169,110 @@
       ]
     };
 
-    // Get dropdown and table
     const dropdown = document.getElementById('txn-filter');
     const tableBody = document.querySelector('.data-table tbody');
+    const editButton = document.getElementById('txn-edit-btn');
+    const addButton = document.getElementById('txn-add-btn');
 
-    // Function to populate table
-    const populateTable = (filterKey) => {
-      const data = tableData[filterKey];
+    let tableData = loadTableData();
+    let currentFilter = dropdown.value || 'today';
+
+    function loadTableData() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return stored ? JSON.parse(stored) : defaultData;
+    }
+
+    function saveTableData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tableData));
+    }
+
+    function renderRow(row) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${row[0]}</td>
+        <td>${row[1]}</td>
+        <td>${row[2]}</td>
+        <td>${row[3]}</td>
+        <td>${row[4]}</td>
+        <td><span class="paid-badge">${row[5]}</span></td>
+      `;
+      tableBody.appendChild(tr);
+    }
+
+    function populateTable(filterKey) {
+      currentFilter = filterKey;
       tableBody.innerHTML = '';
-      data.forEach(row => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${row[0]}</td>
-          <td>${row[1]}</td>
-          <td>${row[2]}</td>
-          <td>${row[3]}</td>
-          <td>${row[4]}</td>
-          <td><span class="paid-badge">${row[5]}</span></td>
-        `;
-        tableBody.appendChild(tr);
+      const rows = tableData[filterKey] || [];
+      rows.forEach(renderRow);
+      if (editButton.classList.contains('editing')) {
+        setEditing(true);
+      }
+    }
+
+    function setEditing(enabled) {
+      tableBody.querySelectorAll('td').forEach(td => {
+        td.contentEditable = enabled;
+        td.classList.toggle('editable', enabled);
       });
-    };
+      editButton.classList.toggle('editing', enabled);
+      editButton.title = enabled ? 'Finish editing' : 'Edit';
+    }
 
-    // Load "today" data on page load
-    populateTable('today');
+    function saveCurrentRows() {
+      const rows = Array.from(tableBody.querySelectorAll('tr'));
+      tableData[currentFilter] = rows.map(row => {
+        const cells = row.querySelectorAll('td');
+        return [
+          cells[0].innerText.trim(),
+          cells[1].innerText.trim(),
+          cells[2].innerText.trim(),
+          cells[3].innerText.trim(),
+          cells[4].innerText.trim(),
+          cells[5].innerText.trim()
+        ];
+      });
+      saveTableData();
+    }
 
-    // Update table when dropdown changes
+    function addTransactionRow() {
+      tableData[currentFilter] = tableData[currentFilter] || [];
+      tableData[currentFilter].push(['', '', '', '', '', 'Pending']);
+      populateTable(currentFilter);
+      setEditing(true);
+      const firstCell = tableBody.querySelector('td');
+      firstCell?.focus();
+    }
+
     dropdown.addEventListener('change', (e) => {
+      if (editButton.classList.contains('editing')) {
+        saveCurrentRows();
+        setEditing(false);
+      }
       populateTable(e.target.value);
     });
+
+    editButton.addEventListener('click', () => {
+      const isEditing = !editButton.classList.contains('editing');
+      setEditing(isEditing);
+      if (!isEditing) {
+        saveCurrentRows();
+      } else {
+        const firstCell = tableBody.querySelector('td');
+        firstCell?.focus();
+      }
+    });
+
+    addButton.addEventListener('click', () => {
+      addTransactionRow();
+    });
+
+    window.addEventListener('beforeunload', () => {
+      if (editButton.classList.contains('editing')) {
+        saveCurrentRows();
+      }
+    });
+
+    populateTable(currentFilter);
   </script>
 </body>
 </html>
