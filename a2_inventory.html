@@ -111,7 +111,7 @@
         <button id="inventory-edit-btn" class="icon-btn" title="Edit">
           <img src="other icons/edit.png" alt="edit" class="btn-png">
         </button>
-        <button class="icon-btn" title="Add">
+        <button id="inventory-add-btn" class="icon-btn" title="Add">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
           </svg>
@@ -189,17 +189,40 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     }
 
+    function setEditing(enabled) {
+      invBody.querySelectorAll('td').forEach(td => {
+        td.contentEditable = enabled;
+        td.classList.toggle('editable', enabled);
+      });
+    }
+
+    function addInventoryRow() {
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><span class="status-badge-instock">In Stock</span></td>
+      `;
+      invBody.appendChild(newRow);
+      setEditing(true);
+      editButton.classList.add('editing');
+      editButton.title = 'Finish editing';
+      const firstCell = newRow.querySelector('td');
+      firstCell?.focus();
+    }
+
     renderInventory(loadInventoryData());
 
     const editButton = document.getElementById('inventory-edit-btn');
+    const addButton = document.getElementById('inventory-add-btn');
+
     editButton.addEventListener('click', () => {
       const isEditing = editButton.classList.toggle('editing');
       editButton.title = isEditing ? 'Finish editing' : 'Edit';
-
-      invBody.querySelectorAll('td').forEach(td => {
-        td.contentEditable = isEditing;
-        td.classList.toggle('editable', isEditing);
-      });
+      setEditing(isEditing);
 
       if (isEditing) {
         const firstCell = invBody.querySelector('td[contenteditable="true"]');
@@ -207,6 +230,10 @@
       } else {
         saveInventoryData();
       }
+    });
+
+    addButton.addEventListener('click', () => {
+      addInventoryRow();
     });
 
     window.addEventListener('beforeunload', () => {
