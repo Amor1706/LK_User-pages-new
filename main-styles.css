@@ -693,9 +693,10 @@
   gap: 14px;
 }
 
-/* .sales-kpi-card {
-  /* extends .dashboard-card */
-*/
+.sales-kpi-card {
+  box-shadow: var(--drop-shadow);
+}
+
 
 .sales-kpi-header {
   display: flex;
@@ -735,7 +736,7 @@
   background: var(--navy);
   border-radius: var(--radius-md);
   padding: 20px 20px;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--drop-shadow);
   color: var(--white);
 }
 
