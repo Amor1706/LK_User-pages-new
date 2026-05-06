@@ -20,7 +20,7 @@
   --white:        #ffffff;
   --black:        #000000;
   --off-white:    #ebebeb;
-  --text-main:    #0f1a2e;
+  --text-main:    #000000;
   --text-muted:   #6b7a99;
   --text-light:   rgba(255, 255, 255, 0.80);
   --border:       #e2e8f4;
@@ -244,7 +244,7 @@ ul {
 .hero__image-wrap {
   position: relative;
   flex-shrink: 0;
-  width: min(500px, 44vw);
+  width: min(550px, 44vw);
   height: min(560px, 50vw);
   display: flex;
   align-items: flex-end;
@@ -253,8 +253,11 @@ ul {
 
 .hero__circle {
   position: absolute;
-  inset: 0;
-  background: #c8d9ef;
+  top: -10%;
+  left: 25%;
+  width: 105%;
+  height: 100%;
+  background: var(--sky-blue);
   border-radius: 50%;
   z-index: 0;
 }
@@ -262,11 +265,11 @@ ul {
 .hero__img {
   position: relative;
   z-index: 1;
-  width: 90%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  border-radius: 50% 50% 0 0 / 60% 60% 0 0;
+  /* border-radius: 40% 40% 0 0 / 40% 40% 0 0; */
 }
 
 /* ============================================================
