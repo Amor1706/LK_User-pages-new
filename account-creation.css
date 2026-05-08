@@ -3,6 +3,13 @@
    Scope: shared styles for login · signup · forgot-password · check-email
    ============================================================ */
 
+/* ── Local Fonts ── */
+@font-face {
+  font-family: 'Makira';
+  src: url('fonts/makira-font/makira-bold.otf') format('opentype');
+  font-weight: 400;
+}
+
 /* ── Google Font (Satoshi) loaded in each HTML <head> ── */
 
 /* ============================================================
@@ -100,6 +107,7 @@ input, button {
   font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.3px;
+  font-family: 'Makira', sans-serif;
 }
 
 .auth-logo img {
@@ -139,6 +147,7 @@ input, button {
   display: flex;
   align-items: center;
   gap: 14px;
+  font-family: 'Makira', sans-serif;
 }
 
 .auth-brand__tagline {
@@ -172,6 +181,12 @@ input, button {
 .auth-form-wrap {
   width: 100%;
   max-width: 400px;
+}
+
+.crown{
+  width: 40px;
+  height: 40px;
+  rotate: calc();
 }
 
 /* ============================================================
