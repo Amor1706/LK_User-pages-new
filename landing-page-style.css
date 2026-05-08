@@ -386,6 +386,8 @@ ul {
 
 .service-card__icon {
   margin-bottom: 20px;
+  width: 40px;
+  height: 40px;
 }
 
 .service-card__title {
