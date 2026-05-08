@@ -60,19 +60,14 @@
     </nav>
   </aside>
 
+
   <!-- ===== MAIN CONTENT ===== -->
   <main class="main">
-
-    <!-- No topbar user shown in this design, but keeping consistent -->
-    <header class="topbar">
-      <div class="topbar__spacer"></div>
-    </header>
-
+ 
     <!-- Address card -->
     <div class="address-card">
       <div class="address-card__left">
         <div class="address-card__label">
-          <!-- Pin icon -->
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1a3a6b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
             <circle cx="12" cy="10" r="3"/>
@@ -87,46 +82,108 @@
         </svg>
       </button>
     </div>
-
+ 
     <!-- Pick up & Delivery -->
     <section class="section">
       <h2 class="section__title">Pick up &amp; Delivery</h2>
-      <div class="toggle-grid">
-        <button class="toggle-btn selected" onclick="selectToggle(this, 'delivery')">Delivery</button>
-        <button class="toggle-btn"          onclick="selectToggle(this, 'delivery')">Pick up</button>
+      <div class="option-grid">
+ 
+        <div class="option-card selected" onclick="selectOption(this, 'delivery')">
+          <div class="option-card__icon">
+            <svg width="52" height="52" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="44" cy="10" r="5" stroke="currentColor" stroke-width="2" fill="none"/>
+              <path d="M10 44 L22 34 L34 34 L40 26 L52 26 L54 34 L56 44" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <circle cx="15" cy="49" r="6" stroke="currentColor" stroke-width="2.2" fill="none"/>
+              <circle cx="51" cy="49" r="6" stroke="currentColor" stroke-width="2.2" fill="none"/>
+              <rect x="20" y="26" width="12" height="9" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+              <line x1="44" y1="15" x2="40" y2="28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="40" y1="28" x2="34" y2="33" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="option-card__info">
+            <span class="option-card__name">Delivery</span>
+            <span class="option-card__sub">+&#8369;20.00</span>
+          </div>
+        </div>
+ 
+        <div class="option-card" onclick="selectOption(this, 'delivery')">
+          <div class="option-card__icon">
+            <svg width="52" height="52" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="16" y="24" width="32" height="30" rx="4" stroke="currentColor" stroke-width="2.2" fill="none"/>
+              <path d="M24 24 C24 16 40 16 40 24" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+              <polyline points="26,16 32,10 38,16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="32" y1="10" x2="32" y2="20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="option-card__info">
+            <span class="option-card__name">Pick up</span>
+            <span class="option-card__sub">No additional fee</span>
+          </div>
+        </div>
+ 
       </div>
     </section>
-
+ 
     <!-- Payment Methods -->
     <section class="section">
       <h2 class="section__title">Payment Methods</h2>
-      <div class="toggle-grid">
-        <button class="toggle-btn selected" onclick="selectToggle(this, 'payment')">Online Payment</button>
-        <button class="toggle-btn"          onclick="selectToggle(this, 'payment')">Cash on pick up/delivery</button>
+      <div class="option-grid">
+ 
+        <div class="option-card selected" onclick="selectOption(this, 'payment')">
+          <div class="option-card__icon">
+            <svg width="52" height="52" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="16" y="8" width="28" height="46" rx="5" stroke="currentColor" stroke-width="2.2" fill="none"/>
+              <rect x="20" y="14" width="20" height="28" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/>
+              <polyline points="24,28 29,33 38,22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="30" cy="48" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="option-card__info">
+            <span class="option-card__name">Online Payment</span>
+            <span class="option-card__sub">Gcash Payment</span>
+          </div>
+        </div>
+ 
+        <div class="option-card" onclick="selectOption(this, 'payment')">
+          <div class="option-card__icon">
+            <svg width="52" height="52" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="22" width="48" height="32" rx="5" stroke="currentColor" stroke-width="2.2" fill="none"/>
+              <line x1="8" y1="32" x2="56" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <rect x="38" y="36" width="14" height="10" rx="3" stroke="currentColor" stroke-width="1.8" fill="none"/>
+              <circle cx="45" cy="41" r="2.5" stroke="currentColor" stroke-width="1.6" fill="none"/>
+              <polyline points="22,16 26,10 30,16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="26" y1="10" x2="26" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="option-card__info">
+            <span class="option-card__name">Cash on pick up/delivery</span>
+            <span class="option-card__sub">Pay Cash</span>
+          </div>
+        </div>
+ 
       </div>
     </section>
-
+ 
     <!-- Bottom actions -->
     <div class="bottom-actions">
-      <button class="btn-back">
+      <button class="btn-back" onclick="window.location.href='u3.1_select-wash.html'">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         Back
       </button>
-      <button class="btn-next">
-        Next
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    <button class="btn-next" onclick="window.location.href='u4_laundry-status.html'">
+       Finish
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </button>
     </div>
-
+ 
   </main>
-
+ 
   <script>
-    function selectToggle(btn, group) {
-      const parent = btn.closest('.toggle-grid');
-      parent.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
+    function selectOption(card, group) {
+      const parent = card.closest('.option-grid');
+      parent.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
     }
   </script>
-
+ 
 </body>
-</html>

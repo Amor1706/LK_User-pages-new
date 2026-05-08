@@ -60,10 +60,10 @@
     </nav>
   </aside>
 
+
   <!-- ===== MAIN CONTENT ===== -->
   <main class="main">
-
-    <!-- Top bar -->
+ 
     <header class="topbar">
       <div class="topbar__user">
         <div class="topbar__avatar">LV</div>
@@ -73,17 +73,15 @@
         </div>
       </div>
     </header>
-
-    <!-- Transaction History Section -->
+ 
     <section class="section">
-      <h1 class="page-header__title">Transaction History</h1>
-
+      <h2 class="section__title">Transaction History</h2>
+ 
       <div class="transactions">
-
-        <!-- Transaction 1: Full Service / Delivery -->
+ 
+        <!-- Transaction 1 -->
         <div class="transaction-item">
           <div class="transaction-item__icon">
-            <!-- Washer icon -->
             <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="4" y="4" width="32" height="32" rx="6" stroke="#1a3a6b" stroke-width="2.5"/>
               <circle cx="20" cy="22" r="8" stroke="#1a3a6b" stroke-width="2.5"/>
@@ -93,40 +91,19 @@
             </svg>
           </div>
           <div class="transaction-item__details">
-            <span class="transaction-item__name">Laundry: Full service - Delivery</span>
+            <span class="transaction-item__name">Laundry: Full service/ for delivery</span>
             <span class="transaction-item__date">Thursday, 4 April 2026 | 13:00</span>
           </div>
           <div class="transaction-item__action">
             <span class="transaction-item__meta">Weight: 8 kg&nbsp;|&nbsp;Total: <strong>₱500</strong></span>
-            <button class="btn-check-details">
+            <button class="btn-check-details" onclick="openModal('Full Laundry Service','#25644778','Regular Clothes','Detergent','Thursday, 4 April 2026 | 13:00','Saturday, 6 April 2026 | 15:00','In Progress','₱450','GCash','Paid')">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               Check Details
             </button>
           </div>
         </div>
-
-        <!-- Transaction 2: Dry & Fold / Pick up -->
-        <div class="transaction-item">
-          <div class="transaction-item__icon">
-            <!-- T-shirt / Dry & Fold icon -->
-            <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14 8 L8 14 L12 16 L12 32 L28 32 L28 16 L32 14 L26 8 C25 10 21 12 20 12 C19 12 15 10 14 8Z" stroke="#1a3a6b" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
-            </svg>
-          </div>
-          <div class="transaction-item__details">
-            <span class="transaction-item__name">Laundry: Dry &amp; Fold - Pickup</span>
-            <span class="transaction-item__date">Thursday, 4 April 2026 | 13:00</span>
-          </div>
-          <div class="transaction-item__action">
-            <span class="transaction-item__meta">Weight: 8 kg&nbsp;|&nbsp;Total: <strong>₱500</strong></span>
-            <button class="btn-check-details">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              Check Details
-            </button>
-          </div>
-        </div>
-
-        <!-- Transaction 3: Dry & Fold / Pick up -->
+ 
+        <!-- Transaction 2 -->
         <div class="transaction-item">
           <div class="transaction-item__icon">
             <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -134,22 +111,126 @@
             </svg>
           </div>
           <div class="transaction-item__details">
-            <span class="transaction-item__name">Laundry: Dry &amp; Fold - Pickup</span>
+            <span class="transaction-item__name">Laundry: Dry&amp;Fold/ For pick up</span>
             <span class="transaction-item__date">Thursday, 4 April 2026 | 13:00</span>
           </div>
           <div class="transaction-item__action">
             <span class="transaction-item__meta">Weight: 8 kg&nbsp;|&nbsp;Total: <strong>₱500</strong></span>
-            <button class="btn-check-details">
+            <button class="btn-check-details" onclick="openModal('Dry &amp; Fold Service','#25644779','Regular Clothes','None','Thursday, 4 April 2026 | 13:00','Friday, 5 April 2026 | 15:00','Completed','₱500','Cash','Paid')">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               Check Details
             </button>
           </div>
         </div>
-
+ 
+        <!-- Transaction 3 -->
+        <div class="transaction-item">
+          <div class="transaction-item__icon">
+            <svg width="26" height="26" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 8 L8 14 L12 16 L12 32 L28 32 L28 16 L32 14 L26 8 C25 10 21 12 20 12 C19 12 15 10 14 8Z" stroke="#1a3a6b" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+          <div class="transaction-item__details">
+            <span class="transaction-item__name">Laundry: Dry&amp;Fold/ For pick up</span>
+            <span class="transaction-item__date">Thursday, 4 April 2026 | 13:00</span>
+          </div>
+          <div class="transaction-item__action">
+            <span class="transaction-item__meta">Weight: 8 kg&nbsp;|&nbsp;Total: <strong>₱500</strong></span>
+            <button class="btn-check-details" onclick="openModal('Dry &amp; Fold Service','#25644780','Maong &amp; Blankets','Fabric Conditioner','Thursday, 4 April 2026 | 13:00','Saturday, 6 April 2026 | 10:00','Completed','₱500','GCash','Paid')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              Check Details
+            </button>
+          </div>
+        </div>
+ 
       </div>
     </section>
-
+ 
   </main>
-
+ 
+  <!-- ===== SERVICE DETAILS MODAL ===== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+    <div class="modal" id="modal">
+      <h1 class="modal__title">Service Details</h1>
+      <p class="modal__service-name" id="modalServiceName"></p>
+      <p class="modal__order-no" id="modalOrderNo"></p>
+      <hr class="modal__divider">
+      <div class="modal__rows">
+        <div class="modal__row">
+          <span class="modal__row-key">Clothes:</span>
+          <span class="modal__row-val" id="modalClothes"></span>
+        </div>
+        <div class="modal__row">
+          <span class="modal__row-key">Optional Service:</span>
+          <span class="modal__row-val" id="modalOptional"></span>
+        </div>
+        <div class="modal__row">
+          <span class="modal__row-key">Date Ordered:</span>
+          <span class="modal__row-val" id="modalDateOrdered"></span>
+        </div>
+        <div class="modal__row">
+          <span class="modal__row-key">Estimated Completion:</span>
+          <span class="modal__row-val" id="modalEstCompletion"></span>
+        </div>
+        <div class="modal__row">
+          <span class="modal__row-key">Order Status:</span>
+          <span class="modal__row-val" id="modalStatus"></span>
+        </div>
+        <div class="modal__row">
+          <span class="modal__row-key">Total Cost:</span>
+          <span class="modal__row-val" id="modalTotal"></span>
+        </div>
+        <div class="modal__row">
+          <span class="modal__row-key">Payment Method:</span>
+          <span class="modal__row-val" id="modalPayMethod"></span>
+        </div>
+        <div class="modal__row">
+          <span class="modal__row-key">Payment Status:</span>
+          <span class="modal__row-val" id="modalPayStatus"></span>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="modal__back-btn" onclick="closeModal()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back
+        </button>
+      </div>
+    </div>
+  </div>
+ 
+  <script>
+    function openModal(serviceName, orderNo, clothes, optional, dateOrdered, estCompletion, status, total, payMethod, payStatus) {
+      document.getElementById('modalServiceName').textContent = serviceName;
+      document.getElementById('modalOrderNo').textContent = 'Order No: ' + orderNo;
+      document.getElementById('modalClothes').textContent = clothes;
+      document.getElementById('modalOptional').textContent = optional;
+      document.getElementById('modalDateOrdered').textContent = dateOrdered;
+      document.getElementById('modalEstCompletion').textContent = estCompletion;
+      document.getElementById('modalStatus').textContent = status;
+      document.getElementById('modalTotal').textContent = total;
+      document.getElementById('modalPayMethod').textContent = payMethod;
+      document.getElementById('modalPayStatus').textContent = payStatus;
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+ 
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+ 
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('modalOverlay')) {
+        closeModal();
+      }
+    }
+ 
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+ 
 </body>
 </html>
+ 
