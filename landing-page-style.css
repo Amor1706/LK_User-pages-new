@@ -456,6 +456,13 @@ ul {
   font-weight: 500;
 }
 
+.contact__info li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: inherit;
+}
+
 .contact__icon {
   width: 36px;
   height: 36px;
