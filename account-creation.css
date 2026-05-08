@@ -95,11 +95,17 @@ input, button {
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: -10px;
   color: var(--white);
   font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.3px;
+}
+
+.auth-logo img {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
 }
 
 /* Centered brand text */
