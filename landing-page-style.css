@@ -314,9 +314,10 @@ ul {
 .feature__icon {
   display: flex;
   justify-content: center;
-  margin-bottom: 28px;
+  margin: 0 auto 10px;
   min-height: 90px;
   align-items: center;
+  width: 150px;
 }
 
 .feature__title {
