@@ -372,12 +372,19 @@ input, button {
 .auth-icon {
   display: flex;
   justify-content: center;
-  margin: 28px 0 32px;
+  margin: 0px 0 10px;
 }
 
 .auth-icon svg {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
+}
+
+.email-subtitle {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 0px;
 }
 
 /* ============================================================
